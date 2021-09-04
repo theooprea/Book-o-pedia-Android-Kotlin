@@ -1,13 +1,25 @@
 package com.example.bookolx.login
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.bookolx.BookApi
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 class LoginViewModel : ViewModel() {
     val emailLogin = MutableLiveData<String>()
     val passwordLogin = MutableLiveData<String>()
+
 
     private val _eventLoginSuccess = MutableLiveData<Boolean>()
     val eventLoginSuccess: LiveData<Boolean>
@@ -23,7 +35,36 @@ class LoginViewModel : ViewModel() {
     }
 
     fun onLogin() {
-        onLoginSuccess()
+        val jsonObject = JSONObject()
+        jsonObject.put("email", emailLogin.value)
+        jsonObject.put("password", passwordLogin.value)
+
+        val jsonString = jsonObject.toString()
+        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = BookApi.retrofitService.login(requestBody)
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string()
+                        )
+                    )
+
+                    Log.i("LoginViewModel", "A mers")
+                    Log.i("LoginViewModel", prettyJson)
+
+                    onLoginSuccess()
+                }
+                else {
+                    Log.i("LoginViewModel", "Nu a mers")
+                }
+            }
+        }
     }
 
     fun onRegister() {

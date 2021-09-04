@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.example.bookolx.R
 import com.example.bookolx.databinding.FragmentLoginBinding
 
@@ -42,7 +40,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun Login() {
-        Log.i("LoginViewModel", "login " + viewModel.emailLogin.value + " " + viewModel.passwordLogin.value)
+        Log.i("LoginFragment", "login " + viewModel.emailLogin.value + " " + viewModel.passwordLogin.value)
 
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         NavHostFragment.findNavController(this).navigate(action)

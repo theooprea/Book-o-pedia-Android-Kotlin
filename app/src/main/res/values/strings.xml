@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BookOLX</string>
     <string name="loginString">Login</string>
-    <string name="registerString">Register here</string>
+    <string name="registerString">Don\'t have an account?</string>
     <string name="passwordString">Password</string>
     <string name="emailString">Email</string>
     <!-- TODO: Remove or change this placeholder text -->

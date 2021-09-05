@@ -1,6 +1,5 @@
 package com.example.bookolx.login
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,10 +19,21 @@ class LoginViewModel : ViewModel() {
     val emailLogin = MutableLiveData<String>()
     val passwordLogin = MutableLiveData<String>()
 
+    private val _token = MutableLiveData<String>()
+    val token: LiveData<String>
+        get() = _token
+
+    private val _username = MutableLiveData<String>()
+    val username: LiveData<String>
+        get() = _username
 
     private val _eventLoginSuccess = MutableLiveData<Boolean>()
     val eventLoginSuccess: LiveData<Boolean>
         get() = _eventLoginSuccess
+
+    private val _eventLoginFailed = MutableLiveData<Boolean>()
+    val eventLoginFailed: LiveData<Boolean>
+        get() = _eventLoginFailed
 
     init {
         Log.i("LoginViewModel", "init")
@@ -58,17 +68,23 @@ class LoginViewModel : ViewModel() {
                     Log.i("LoginViewModel", "A mers")
                     Log.i("LoginViewModel", prettyJson)
 
+                    val jsonObject : JSONObject = JSONObject(prettyJson)
+                    val token = jsonObject.getString("token")
+                    val username = jsonObject.getString("username")
+
+                    _token.value = token
+                    _username.value = username
+
+                    Log.i("LoginViewModel", token)
+
                     onLoginSuccess()
                 }
                 else {
                     Log.i("LoginViewModel", "Nu a mers")
+                    onLoginFailed()
                 }
             }
         }
-    }
-
-    fun onRegister() {
-        Log.i("LoginViewModel", "register")
     }
 
     fun onLoginSuccessComplete() {
@@ -77,5 +93,13 @@ class LoginViewModel : ViewModel() {
 
     fun onLoginSuccess() {
         _eventLoginSuccess.value = true
+    }
+
+    fun onLoginFailedComplete() {
+        _eventLoginFailed.value = false
+    }
+
+    fun onLoginFailed() {
+        _eventLoginFailed.value = true
     }
 }

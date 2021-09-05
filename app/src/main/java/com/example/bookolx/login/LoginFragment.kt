@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -33,6 +34,12 @@ class LoginFragment : Fragment() {
             }
          })
 
+        viewModel.eventLoginFailed.observe(viewLifecycleOwner, { hasFailed ->
+            if (hasFailed) {
+                LoginFailed()
+            }
+        })
+
         binding.registerButton.setOnClickListener {
             Register() }
 
@@ -42,7 +49,11 @@ class LoginFragment : Fragment() {
     private fun Login() {
         Log.i("LoginFragment", "login " + viewModel.emailLogin.value + " " + viewModel.passwordLogin.value)
 
-        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(
+            viewModel.token.value,
+            viewModel.emailLogin.value,
+            viewModel.username.value
+        )
         NavHostFragment.findNavController(this).navigate(action)
 
         viewModel.onLoginSuccessComplete()
@@ -51,5 +62,10 @@ class LoginFragment : Fragment() {
     private fun Register() {
         val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
         NavHostFragment.findNavController(this).navigate(action)
+    }
+
+    private fun LoginFailed() {
+        Toast.makeText(activity, "No such email password combination", Toast.LENGTH_LONG).show()
+        viewModel.onLoginFailedComplete()
     }
 }

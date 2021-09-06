@@ -1,4 +1,6 @@
 package com.example.bookolx.editprofile
 
-class editProfileViewModel {
+import androidx.lifecycle.ViewModel
+
+class EditProfileViewModel(tokenArg : String, usernameArg : String) : ViewModel()  {
 }

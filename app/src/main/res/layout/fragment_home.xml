@@ -5,9 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".home.HomeFragment">
 
+    <data>
+        <variable
+            name="homeViewModel"
+            type="com.example.bookolx.home.HomeViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:backgroundTint="#37314d">
 
 
         <ImageView
@@ -15,18 +23,22 @@
             android:layout_width="169dp"
             android:layout_height="167dp"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:src="@drawable/ic_avataaars"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/usernameTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            android:text="@{homeViewModel.username}"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toTopOf="@+id/emailTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -34,43 +46,50 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/emailTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            android:text="@{homeViewModel.email}"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toTopOf="@+id/phoneTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/usernameTextview" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/phoneTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="TextViewasfasda"
+            android:layout_marginBottom="32dp"
+            android:text="@{homeViewModel.phone}"
+            android:textColor="#ffffff"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
-            android:layout_width="409dp"
-            android:layout_height="459dp"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="271dp">
+            android:layout_width="404dp"
+            android:layout_height="400dp"
+            android:background="@drawable/round_corners_up"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="#433c5d"
                 android:text="Button"
+                android:textColor="#ffffff"
                 app:layout_constraintBottom_toTopOf="@+id/button3"
                 app:layout_constraintEnd_toStartOf="@+id/button2"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -81,7 +100,9 @@
                 android:id="@+id/button2"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
+                android:backgroundTint="#433c5d"
                 android:text="Button"
+                android:textColor="#ffffff"
                 app:layout_constraintBottom_toTopOf="@+id/button4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -92,7 +113,9 @@
                 android:id="@+id/button3"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
+                android:backgroundTint="#433c5d"
                 android:text="Button"
+                android:textColor="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button4"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -103,7 +126,9 @@
                 android:id="@+id/button4"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
+                android:backgroundTint="#433c5d"
                 android:text="Button"
+                android:textColor="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

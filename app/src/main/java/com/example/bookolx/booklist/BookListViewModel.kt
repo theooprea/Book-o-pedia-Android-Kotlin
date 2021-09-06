@@ -1,4 +1,6 @@
 package com.example.bookolx.booklist
 
-class bookListViewModel {
+import androidx.lifecycle.ViewModel
+
+class BookListViewModel(tokenArg : String, usernameArg : String) : ViewModel() {
 }

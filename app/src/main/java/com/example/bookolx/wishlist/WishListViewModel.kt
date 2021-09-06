@@ -1,4 +1,6 @@
 package com.example.bookolx.wishlist
 
-class wishListViewModel {
+import androidx.lifecycle.ViewModel
+
+class WishListViewModel(tokenArg : String, usernameArg : String) : ViewModel()  {
 }

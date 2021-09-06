@@ -1,4 +1,6 @@
 package com.example.bookolx.searchpage
 
-class searchPageViewModel {
+import androidx.lifecycle.ViewModel
+
+class SearchPageViewModel(tokenArg : String, usernameArg : String) : ViewModel()  {
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookolx.R
 import com.example.bookolx.databinding.FragmentHomeBinding
@@ -26,7 +27,19 @@ class HomeFragment : Fragment() {
             HomeFragmentArgs.fromBundle(requireArguments()).username!!)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
-        binding.textView.text = viewModel.email + " " + viewModel.username + "\n" + viewModel.token
+        binding.homeViewModel = viewModel
+
+        viewModel.getData()
+
+        viewModel.eventDataSuccess.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.phoneTextView.text = viewModel.phone.value
+                binding.usernameTextview.text = viewModel.username.value
+                binding.emailTextView.text = viewModel.email.value
+
+                viewModel.getDataComplete()
+            }
+        })
 
         return binding.root
     }

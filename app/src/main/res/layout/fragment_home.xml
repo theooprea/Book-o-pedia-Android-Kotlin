@@ -9,6 +9,9 @@
         <variable
             name="homeViewModel"
             type="com.example.bookolx.home.HomeViewModel" />
+        <variable
+            name="homeFragment"
+            type="com.example.bookolx.home.HomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,8 +91,10 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:backgroundTint="#433c5d"
-                android:text="Button"
+                android:text="Seach books"
                 android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:onClick="@{() -> homeFragment.search()}"
                 app:layout_constraintBottom_toTopOf="@+id/button3"
                 app:layout_constraintEnd_toStartOf="@+id/button2"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -101,8 +106,10 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:backgroundTint="#433c5d"
-                android:text="Button"
+                android:text="Your Wish List"
                 android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:onClick="@{() -> homeFragment.wishList()}"
                 app:layout_constraintBottom_toTopOf="@+id/button4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -114,8 +121,10 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:backgroundTint="#433c5d"
-                android:text="Button"
+                android:text="Your books"
                 android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:onClick="@{() -> homeFragment.bookList()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button4"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -127,8 +136,10 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:backgroundTint="#433c5d"
-                android:text="Button"
+                android:text="Edit your profile"
                 android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:onClick="@{() -> homeFragment.editProfile()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

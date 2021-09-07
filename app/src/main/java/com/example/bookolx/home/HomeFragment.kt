@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.example.bookolx.R
 import com.example.bookolx.databinding.FragmentHomeBinding
 
@@ -28,10 +29,12 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         binding.homeViewModel = viewModel
+        binding.homeFragment = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.getData()
 
-        viewModel.eventDataSuccess.observe(viewLifecycleOwner, Observer {
+        viewModel.eventDataSuccess.observe(viewLifecycleOwner, {
             if (it) {
                 binding.phoneTextView.text = viewModel.phone.value
                 binding.usernameTextview.text = viewModel.username.value
@@ -42,5 +45,25 @@ class HomeFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    fun editProfile() {
+        val action = HomeFragmentDirections.actionHomeFragmentToEditprofileFragment(viewModel._token, viewModel.username.value)
+        NavHostFragment.findNavController(this).navigate(action)
+    }
+
+    fun bookList() {
+        val action = HomeFragmentDirections.actionHomeFragmentToBooklistFragment(viewModel._token, viewModel.username.value)
+        NavHostFragment.findNavController(this).navigate(action)
+    }
+
+    fun wishList() {
+        val action = HomeFragmentDirections.actionHomeFragmentToWishlistFragment(viewModel._token, viewModel.username.value)
+        NavHostFragment.findNavController(this).navigate(action)
+    }
+
+    fun search() {
+        val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(viewModel._token, viewModel.username.value)
+        NavHostFragment.findNavController(this).navigate(action)
     }
 }

@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 class HomeViewModel(tokenArg: String, emailArg: String, usernameArg: String) : ViewModel() {
-    private val _token = tokenArg
+    val _token = tokenArg
     private val usernameArgument = usernameArg
 
     private val _eventDataSuccess = MutableLiveData<Boolean>()

@@ -22,6 +22,12 @@ interface APIService {
 
     @GET("/users/{username}")
     suspend fun getUser(@Path("username") username: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
+
+    @GET("/users/{username}/books")
+    suspend fun getUserBooks(@Path("username") username: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
+
+    @GET("/users/{username}/wishList")
+    suspend fun getUserWishList(@Path("username") username: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
 }
 
 object BookApi {

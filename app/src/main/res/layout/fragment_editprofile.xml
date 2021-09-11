@@ -4,17 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".editprofile.EditprofileFragment">
 
+    <data>
+        <variable
+            name="editprofileViewModel"
+            type="com.example.bookolx.editprofile.EditprofileViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView3"
+        <EditText
+            android:id="@+id/emailInputE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="editprofile"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="@string/emailString"
+            android:inputType="textPersonName"
+            android:text="@={editprofileViewModel.emailEdited}"
+            app:layout_constraintBottom_toTopOf="@+id/nameInputE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/passwordInputE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="@string/passwordString"
+            android:inputType="textPassword"
+            android:text="@={editprofileViewModel.passwordEdited}"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameInputE" />
+
+        <EditText
+            android:id="@+id/nameInputE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            android:text="@={editprofileViewModel.usernameEdited}"
+            app:layout_constraintBottom_toTopOf="@+id/passwordInputE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailInputE" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Phone"
+            android:inputType="phone"
+            android:text="@={editprofileViewModel.phoneEdited}"
+            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordInputE" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> editprofileViewModel.onEdit()}"
+            android:text="Save changes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

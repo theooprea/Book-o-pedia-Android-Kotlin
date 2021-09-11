@@ -26,6 +26,8 @@ class BooklistViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
         get() = _eventDataSuccess
 
     fun getData() {
+        booksArrayList.clear()
+
         val headerMap = mutableMapOf<String, String>()
         headerMap["Authorization"] = "Bearer " + token
 
@@ -49,9 +51,11 @@ class BooklistViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
                         val jsonBookTitle = jsonBook.getString("title")
                         val jsonBookAuthor = jsonBook.getString("author")
                         val jsonBookGenre = jsonBook.getString("genre")
-                        val jsonBookPrice = jsonBook.getInt("quantity")
+                        val jsonBookPrice = jsonBook.getDouble("price")
+                        val jsonBookPages = jsonBook.getInt("pages")
+                        val jsonBookQuantity = jsonBook.getInt("quantity")
 
-                        val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPrice)
+                        val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPages, jsonBookPrice, jsonBookQuantity)
                         booksArrayList.add(book)
                     }
 

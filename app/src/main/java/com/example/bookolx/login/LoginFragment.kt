@@ -52,7 +52,8 @@ class LoginFragment : Fragment() {
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(
             viewModel.token.value,
             viewModel.emailLogin.value,
-            viewModel.username.value
+            viewModel.username.value,
+            viewModel.passwordLogin.value
         )
         NavHostFragment.findNavController(this).navigate(action)
 

@@ -45,7 +45,7 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_homeFragment_to_booklistFragment"
-            app:destination="@id/booklistFragment" />
+            app:destination="@id/booklistFragment"/>
         <action
             android:id="@+id/action_homeFragment_to_editprofileFragment"
             app:destination="@id/editprofileFragment" />
@@ -55,6 +55,10 @@
         <action
             android:id="@+id/action_homeFragment_to_wishlistFragment"
             app:destination="@id/wishlistFragment" />
+        <argument
+            android:name="password"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/booklistFragment"
@@ -69,6 +73,12 @@
             android:name="username"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_booklistFragment_to_addbookFragment"
+            app:destination="@id/addbookFragment" />
+        <action
+            android:id="@+id/action_booklistFragment_to_editbookFragment"
+            app:destination="@id/editbookFragment" />
     </fragment>
     <fragment
         android:id="@+id/editprofileFragment"
@@ -83,6 +93,28 @@
             android:name="username"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_editprofileFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="phone"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="password"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_editprofileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -111,5 +143,64 @@
             android:name="username"
             app:argType="string"
             app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addbookFragment"
+        android:name="com.example.bookolx.addbook.AddbookFragment"
+        android:label="fragment_addbook"
+        tools:layout="@layout/fragment_addbook" >
+        <argument
+            android:name="token"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addbookFragment_to_booklistFragment"
+            app:destination="@id/booklistFragment"
+            app:popUpTo="@id/booklistFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/editbookFragment"
+        android:name="com.example.bookolx.editbook.EditbookFragment"
+        android:label="fragment_editbook"
+        tools:layout="@layout/fragment_editbook" >
+        <action
+            android:id="@+id/action_editbookFragment_to_booklistFragment"
+            app:destination="@id/booklistFragment"
+            app:popUpTo="@id/booklistFragment"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="token"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="author"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="genre"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="pages"
+            app:argType="integer" />
+        <argument
+            android:name="price"
+            app:argType="float" />
+        <argument
+            android:name="quantity"
+            app:argType="integer" />
     </fragment>
 </navigation>

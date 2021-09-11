@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookolx.BooklistAdapter
 import com.example.bookolx.R
+import com.example.bookolx.addbook.AddbookFragment
 import com.example.bookolx.databinding.FragmentBooklistBinding
 
 class BooklistFragment : Fragment() {
@@ -26,6 +28,7 @@ class BooklistFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val binding = DataBindingUtil.inflate<FragmentBooklistBinding>(inflater, R.layout.fragment_booklist, container, false)
+        binding.booklistFragment = this
 
         viewModelFactory = BooklistViewModelFactory(BooklistFragmentArgs.fromBundle(requireArguments()).token!!,
             BooklistFragmentArgs.fromBundle(requireArguments()).username!!)
@@ -36,7 +39,7 @@ class BooklistFragment : Fragment() {
         booksRecyclerView.layoutManager = LinearLayoutManager(context)
         booksRecyclerView.setHasFixedSize(true)
 
-        adapter = BooklistAdapter(viewModel.booksArrayList)
+        adapter = BooklistAdapter(viewModel.booksArrayList, viewModel.token, viewModel.username, this)
 
         booksRecyclerView.adapter = adapter
 
@@ -50,5 +53,11 @@ class BooklistFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    fun onAddBook() {
+        val action = BooklistFragmentDirections.actionBooklistFragmentToAddbookFragment(BooklistFragmentArgs.fromBundle(requireArguments()).token,
+            BooklistFragmentArgs.fromBundle(requireArguments()).username)
+        NavHostFragment.findNavController(this).navigate(action)
     }
 }

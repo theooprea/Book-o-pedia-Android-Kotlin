@@ -48,7 +48,9 @@ class HomeFragment : Fragment() {
     }
 
     fun editProfile() {
-        val action = HomeFragmentDirections.actionHomeFragmentToEditprofileFragment(viewModel._token, viewModel.username.value)
+        val action = HomeFragmentDirections.actionHomeFragmentToEditprofileFragment(viewModel._token,
+            viewModel.username.value, viewModel.email.value, viewModel.phone.value,
+            HomeFragmentArgs.fromBundle(requireArguments()).password!!)
         NavHostFragment.findNavController(this).navigate(action)
     }
 

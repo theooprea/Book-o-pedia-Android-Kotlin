@@ -68,9 +68,9 @@ class LoginViewModel : ViewModel() {
                     Log.i("LoginViewModel", "A mers")
                     Log.i("LoginViewModel", prettyJson)
 
-                    val jsonObject = JSONObject(prettyJson)
-                    val token = jsonObject.getString("token")
-                    val username = jsonObject.getString("username")
+                    val jsonObjectResponse = JSONObject(prettyJson)
+                    val token = jsonObjectResponse.getString("token")
+                    val username = jsonObjectResponse.getString("username")
 
                     _token.value = token
                     _username.value = username

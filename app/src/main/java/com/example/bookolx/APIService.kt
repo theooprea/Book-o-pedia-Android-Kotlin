@@ -26,8 +26,23 @@ interface APIService {
     @GET("/users/{username}/books")
     suspend fun getUserBooks(@Path("username") username: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
 
+    @POST("/users/{username}/books")
+    suspend fun addUserBook(@Path("username") username: String, @HeaderMap headers: Map<String, String>, @Body requestBody: RequestBody): Response<ResponseBody>
+
+    @DELETE("/users/{username}/books/{title}")
+    suspend fun deleteUserBook(@Path("username") username: String, @Path("title") title: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
+
+    @PUT("/users/{username}/books/{title}")
+    suspend fun editUserBook(@Path("username") username: String, @Path("title") title: String, @HeaderMap headers: Map<String, String>, @Body requestBody: RequestBody): Response<ResponseBody>
+
     @GET("/users/{username}/wishList")
     suspend fun getUserWishList(@Path("username") username: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
+
+    @DELETE("/users/{username}/wishList/{title}")
+    suspend fun deleteUserWishlistBook(@Path("username") username: String, @Path("title") title: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
+
+    @PUT("/users/{username}")
+    suspend fun editUser(@Path("username") username: String, @HeaderMap headers: Map<String, String>, @Body requestBody: RequestBody): Response<ResponseBody>
 }
 
 object BookApi {

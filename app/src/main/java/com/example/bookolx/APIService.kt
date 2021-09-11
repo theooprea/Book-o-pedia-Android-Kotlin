@@ -43,6 +43,9 @@ interface APIService {
 
     @PUT("/users/{username}")
     suspend fun editUser(@Path("username") username: String, @HeaderMap headers: Map<String, String>, @Body requestBody: RequestBody): Response<ResponseBody>
+
+    @GET("/books")
+    suspend fun getBooks(@HeaderMap headers: Map<String, String>): Response<ResponseBody>
 }
 
 object BookApi {

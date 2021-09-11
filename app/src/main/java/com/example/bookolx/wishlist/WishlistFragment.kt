@@ -51,7 +51,7 @@ class WishlistFragment : Fragment() {
         viewModel.eventDataSuccess.observe(viewLifecycleOwner, {
             if (it) {
                 adapter.notifyDataSetChanged()
-                viewModel.getDataComplete()
+                viewModel.getDataSuccessComplete()
             }
         })
 

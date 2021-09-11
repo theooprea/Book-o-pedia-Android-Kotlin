@@ -15,7 +15,6 @@ import kotlinx.coroutines.withContext
 import org.json.JSONArray
 
 class WishlistViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
-    var titles : Array<String> = arrayOf("a", "b", "c", "d", "e")
     var booksArrayList : ArrayList<Book> = arrayListOf()
     var token = tokenArg
     var username = usernameArg
@@ -58,7 +57,7 @@ class WishlistViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
                         booksArrayList.add(book)
                     }
 
-                    _eventDataSuccess.value = true
+                    getDataSuccess()
 
                     Log.i("BooklistViewModel", "A mers " + jsonArray + "\n" + prettyJson)
                     Log.i("BooklistViewModel", "A mers " + response.body()!!.string())
@@ -70,7 +69,11 @@ class WishlistViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
         }
     }
 
-    fun getDataComplete() {
+    fun getDataSuccess() {
+        _eventDataSuccess.value = true
+    }
+
+    fun getDataSuccessComplete() {
         _eventDataSuccess.value = false
     }
 }

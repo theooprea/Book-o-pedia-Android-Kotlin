@@ -30,6 +30,10 @@ class AddbookViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
     val eventCreatedSuccess: LiveData<Boolean>
         get() = _eventCreatedSuccess
 
+    private val _eventCreatedFailed = MutableLiveData<Boolean>()
+    val eventCreatedFailed: LiveData<Boolean>
+        get() = _eventCreatedFailed
+
     fun onAddBook() {
         if (title.value == null || author.value == null || genre.value == null ||
             pages.value == null|| price.value == null || quantity.value == null) {
@@ -73,6 +77,8 @@ class AddbookViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
                 else {
                     Log.i("AddbookViewModel", "Nu a mers " + response.code() + " " + response.message() + "\n"
                     + jsonString)
+
+                    onBookCreatedFailed()
                 }
             }
         }
@@ -84,5 +90,13 @@ class AddbookViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
 
     fun onBookCreatedSuccess() {
         _eventCreatedSuccess.value = true
+    }
+
+    fun onBookCreatedFailedComplete() {
+        _eventCreatedFailed.value = false
+    }
+
+    fun onBookCreatedFailed() {
+        _eventCreatedFailed.value = true
     }
 }

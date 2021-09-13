@@ -25,6 +25,10 @@ class RegisterViewModel : ViewModel() {
     val eventRegisterSuccess: LiveData<Boolean>
         get() = _eventRegisterSuccess
 
+    private val _eventRegisterFailed = MutableLiveData<Boolean>()
+    val eventRegisterFailed: LiveData<Boolean>
+        get() = _eventRegisterFailed
+
     init {
         Log.i("RegisterViewModel", "init")
     }
@@ -63,8 +67,7 @@ class RegisterViewModel : ViewModel() {
                     onRegisterSuccess()
                 }
                 else {
-                    Log.i("RegisterViewModel", "Nu a mers")
-                    Log.i("RegisterViewModel", "" + response.code() + " " + response.message())
+                    onRegisterFailed()
                 }
             }
         }
@@ -77,5 +80,13 @@ class RegisterViewModel : ViewModel() {
 
     fun onRegisterSuccess() {
         _eventRegisterSuccess.value = true
+    }
+
+    fun onRegisterFailedComplete() {
+        _eventRegisterFailed.value = false
+    }
+
+    fun onRegisterFailed() {
+        _eventRegisterFailed.value = true
     }
 }

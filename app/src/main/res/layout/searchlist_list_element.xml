@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:backgroundTint="#DBD0BD">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -15,13 +17,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/searchbookimg" />
+        app:srcCompat="@drawable/book2colored" />
 
     <TextView
         android:id="@+id/searchBookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/searchBookPrice"
         app:layout_constraintEnd_toStartOf="@+id/searchBuyButton"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -32,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/searchWishlistButton"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -43,6 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Buy"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#6B705C"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/searchWishlistButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +60,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Wishlist"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#6B705C"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchBuyButton" />

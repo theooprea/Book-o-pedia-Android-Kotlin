@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".about.About">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:backgroundTint="#DBD0BD">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Book-o-pedia – Oprea Theodor-Alin si Stingescu Andrei Petrut"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit your profile - Utilizatorul poate sa isi faca update la datele sale : Username, Email si Parola"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="31dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oprea Theodor Alin:"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="31dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stingescu Andrei Petrut:"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="238dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:text="construirea paginilor de register, edit profile, about, options menu, atat pe parte de design, cat si pe parte de cod (app logic and initializations)"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="construirea paginilor de login, home, booklist, wishlist, search, edit book, add book, atat pe parte de design, cat si pe parte de cod (app logic, initializations and http requests)"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="138dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In afara de cele de mai sus, utilizatorul poate dispune de functionalitatile de adaugare, stergere, modificare si vizualizare pentru cartea /cartiilor. Partea de vizualizare afiseaza caracteristicile cartii selectate"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="213dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="implementarea serverului"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="138dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Este o aplicatie folosita pentru comercializarea unor carti de catre toti utilizatori."
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="31dp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceasta platforma dispune de o baza de date in care toti care doresc sa isi faca cont, se inregistreaza si se logheaza prin intermediul aplicatiei. In urma logarii pagina de home contine 4 butoane care implementeaza diferite operatii:"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="147dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Books - Cauta cartile dupa preferintele utilizatorului"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="89dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Books - Iti afiseaza toate cartile "
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="205dp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Wish List - Preferintele utilizatorului legate de carti"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="147dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

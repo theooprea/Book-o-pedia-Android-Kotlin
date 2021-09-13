@@ -31,6 +31,10 @@ class EditbookViewModel(tokenArg: String, usernameArg: String, titleArg: String,
     val eventEditedSuccess: LiveData<Boolean>
         get() = _eventEditedSuccess
 
+    private val _eventEditedFailed = MutableLiveData<Boolean>()
+    val eventEditedFailed: LiveData<Boolean>
+        get() = _eventEditedFailed
+
     fun modifyBook() {
         if (title.value == null || author.value == null || genre.value == null ||
             pages.value == null|| price.value == null || quantity.value == null) {
@@ -76,6 +80,8 @@ class EditbookViewModel(tokenArg: String, usernameArg: String, titleArg: String,
                 else {
                     Log.i("AddbookViewModel", "Nu a mers " + response.code() + " " + response.message() + "\n"
                             + jsonString)
+
+                    onBookEditedFailed()
                 }
             }
         }
@@ -89,5 +95,13 @@ class EditbookViewModel(tokenArg: String, usernameArg: String, titleArg: String,
 
     fun onBookEditedSuccess() {
         _eventEditedSuccess.value = true
+    }
+
+    fun onBookEditedFailedComplete() {
+        _eventEditedFailed.value = false
+    }
+
+    fun onBookEditedFailed() {
+        _eventEditedFailed.value = true
     }
 }

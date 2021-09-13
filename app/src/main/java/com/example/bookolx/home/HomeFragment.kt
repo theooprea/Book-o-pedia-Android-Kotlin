@@ -1,14 +1,15 @@
 package com.example.bookolx.home
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.bookolx.R
 import com.example.bookolx.databinding.FragmentHomeBinding
 
@@ -44,6 +45,15 @@ class HomeFragment : Fragment() {
             }
         })
 
+        viewModel.eventDataFailed.observe(viewLifecycleOwner, {
+            if (it) {
+                Toast.makeText(activity, "Error in getting data, please re-login", Toast.LENGTH_LONG).show()
+
+                viewModel.getDataFailed()
+            }
+        })
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -67,5 +77,25 @@ class HomeFragment : Fragment() {
     fun search() {
         val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(viewModel._token, viewModel.username.value)
         NavHostFragment.findNavController(this).navigate(action)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.toString() == "About") {
+            val action = HomeFragmentDirections.actionHomeFragmentToAboutFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+            return true
+        }
+        else if (item.toString() == "Log out") {
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) ||
+                super.onOptionsItemSelected(item)
+        }
+        else {
+            return false
+        }
     }
 }

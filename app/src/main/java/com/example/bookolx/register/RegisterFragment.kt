@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -34,6 +35,12 @@ class RegisterFragment : Fragment() {
             }
         })
 
+        viewModel.eventRegisterFailed.observe(viewLifecycleOwner, { hasFailed ->
+            if (hasFailed) {
+                RegisterFailed()
+            }
+        })
+
         return binding.root
 
     }
@@ -47,5 +54,10 @@ class RegisterFragment : Fragment() {
         NavHostFragment.findNavController(this).navigate(action)
 
         viewModel.onRegisterSuccessComplete()
+    }
+
+    private fun RegisterFailed() {
+        Toast.makeText(activity, "Register failed", Toast.LENGTH_LONG).show()
+        viewModel.onRegisterFailedComplete()
     }
 }

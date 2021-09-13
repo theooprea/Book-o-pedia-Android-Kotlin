@@ -59,6 +59,9 @@
             android:name="password"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/booklistFragment"
@@ -79,6 +82,9 @@
         <action
             android:id="@+id/action_booklistFragment_to_editbookFragment"
             app:destination="@id/editbookFragment" />
+        <action
+            android:id="@+id/action_booklistFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/editprofileFragment"
@@ -115,6 +121,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_editprofileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -129,6 +138,9 @@
             android:name="username"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_searchFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/wishlistFragment"
@@ -143,6 +155,9 @@
             android:name="username"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_wishlistFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/addbookFragment"
@@ -162,6 +177,9 @@
             app:destination="@id/booklistFragment"
             app:popUpTo="@id/booklistFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_addbookFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/editbookFragment"
@@ -202,5 +220,13 @@
         <argument
             android:name="quantity"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editbookFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.bookolx.about.About"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

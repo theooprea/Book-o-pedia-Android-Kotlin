@@ -55,20 +55,28 @@ class SearchViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
                         val jsonBookPrice = jsonBook.getDouble("price")
                         val jsonBookPages = jsonBook.getInt("pages")
                         val jsonBookQuantity = jsonBook.getInt("quantity")
+                        val jsonBookSeller = jsonBook.getString("seller")
 
-                        val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPages, jsonBookPrice, jsonBookQuantity)
-                        booksArrayList.add(book)
-                    }
-
-                    if (title != null || genre != null) {
-                        Log.i("SearchViewModel", "ceva nu i bun " + title + " " + genre)
+                        if (jsonBookSeller != username) {
+                            if (title != null || genre != null) {
+                                if (title != null && title != "" && jsonBookTitle.contains(title, true)) {
+                                    val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPages, jsonBookPrice, jsonBookQuantity, jsonBookSeller)
+                                    booksArrayList.add(book)
+                                }
+                                else if (genre != null && genre != "" && jsonBookGenre == genre) {
+                                    val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPages, jsonBookPrice, jsonBookQuantity, jsonBookSeller)
+                                    booksArrayList.add(book)
+                                }
+                            }
+                            else {
+                                val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPages, jsonBookPrice, jsonBookQuantity, jsonBookSeller)
+                                booksArrayList.add(book)
+                            }
+                        }
                     }
 
                     booksArrayList.sortWith(comparator)
                     getDataSuccess()
-
-                    Log.i("SearchViewModel", "A mers " + jsonArray + "\n" + prettyJson)
-                    Log.i("SearchViewModel", "A mers " + response.body()!!.string())
                 }
                 else {
                     Log.i("SearchViewModel", "Nu a mers")

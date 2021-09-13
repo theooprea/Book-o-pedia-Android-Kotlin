@@ -29,6 +29,9 @@ interface APIService {
     @POST("/users/{username}/books")
     suspend fun addUserBook(@Path("username") username: String, @HeaderMap headers: Map<String, String>, @Body requestBody: RequestBody): Response<ResponseBody>
 
+    @POST("/users/{username}/wishList")
+    suspend fun addUserWishBook(@Path("username") username: String, @HeaderMap headers: Map<String, String>, @Body requestBody: RequestBody): Response<ResponseBody>
+
     @DELETE("/users/{username}/books/{title}")
     suspend fun deleteUserBook(@Path("username") username: String, @Path("title") title: String, @HeaderMap headers: Map<String, String>): Response<ResponseBody>
 

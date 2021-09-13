@@ -54,8 +54,9 @@ class BooklistViewModel(tokenArg: String, usernameArg: String) : ViewModel() {
                         val jsonBookPrice = jsonBook.getDouble("price")
                         val jsonBookPages = jsonBook.getInt("pages")
                         val jsonBookQuantity = jsonBook.getInt("quantity")
+                        val jsonBookSeller = jsonBook.getString("seller")
 
-                        val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPages, jsonBookPrice, jsonBookQuantity)
+                        val book = Book(jsonBookTitle, jsonBookAuthor, jsonBookGenre, jsonBookPages, jsonBookPrice, jsonBookQuantity, jsonBookSeller)
                         booksArrayList.add(book)
                     }
 

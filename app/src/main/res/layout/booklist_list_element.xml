@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:backgroundTint="#DBD0BD">
 
     <ImageView
         android:id="@+id/imageView5"
@@ -15,13 +17,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/index" />
+        app:srcCompat="@drawable/book3colored" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/booklistRemoveButtom"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -31,6 +34,9 @@
         android:id="@+id/booklistRemoveButtom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#6B705C"
+        android:textColor="#ffffff"
         android:layout_marginEnd="16dp"
         android:text="Remove"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Edit"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#6B705C"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/booklistRemoveButtom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

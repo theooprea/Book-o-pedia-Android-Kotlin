@@ -22,6 +22,10 @@ class HomeViewModel(tokenArg: String, emailArg: String, usernameArg: String) : V
     val eventDataSuccess: LiveData<Boolean>
         get() = _eventDataSuccess
 
+    private val _eventDataFailed = MutableLiveData<Boolean>()
+    val eventDataFailed: LiveData<Boolean>
+        get() = _eventDataFailed
+
     private val _username = MutableLiveData<String>()
     val username: LiveData<String>
         get() = _username
@@ -69,7 +73,8 @@ class HomeViewModel(tokenArg: String, emailArg: String, usernameArg: String) : V
                 }
                 else {
                     Log.i("HomeViewModel", "Nu a mers")
-                    _phone.value = "phone"
+
+                    _eventDataFailed.value = true
                 }
             }
         }
@@ -77,5 +82,9 @@ class HomeViewModel(tokenArg: String, emailArg: String, usernameArg: String) : V
 
     fun getDataComplete() {
         _eventDataSuccess.value = false
+    }
+
+    fun getDataFailed() {
+        _eventDataFailed.value = false
     }
 }

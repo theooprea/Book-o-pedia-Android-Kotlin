@@ -1,11 +1,14 @@
 package com.example.bookolx
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +33,10 @@ class WishlistAdapter(private val wishlist : ArrayList<Book>, private val token:
             deleteinAPI(wishlist.get(position).title, position)
             notifyDataSetChanged()
         }
+
+        holder.buyButton.setOnClickListener {
+            buyBook(currentItem.title)
+        }
     }
 
     fun deleteinAPI(title: String, position: Int) {
@@ -52,6 +59,18 @@ class WishlistAdapter(private val wishlist : ArrayList<Book>, private val token:
         }
 
         Log.i("WishlistAdapter", title + " " + token + " " + username)
+    }
+
+    private fun getShareIntent(title: String) : Intent {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.setType("text/plain")
+            .putExtra(Intent.EXTRA_TEXT, "Hi! I want to buy " + title)
+        return shareIntent
+    }
+
+
+    private fun buyBook(title: String) {
+        fragment.startActivity(getShareIntent(title))
     }
 
     override fun getItemCount(): Int {

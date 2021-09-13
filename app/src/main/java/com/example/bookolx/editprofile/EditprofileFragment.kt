@@ -2,18 +2,20 @@ package com.example.bookolx.editprofile
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.bookolx.R
 import com.example.bookolx.booklist.BooklistFragmentArgs
 import com.example.bookolx.booklist.BooklistViewModel
 import com.example.bookolx.booklist.BooklistViewModelFactory
 import com.example.bookolx.databinding.FragmentEditprofileBinding
+import com.example.bookolx.home.HomeFragmentDirections
 
 class EditprofileFragment : Fragment() {
     private lateinit var viewModel: EditprofileViewModel
@@ -38,12 +40,20 @@ class EditprofileFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.eventEditprofileSuccess.observe(viewLifecycleOwner, { hasLoggedIn ->
-            if (hasLoggedIn) {
+        viewModel.eventEditprofileSuccess.observe(viewLifecycleOwner, { hasEditedSuccess ->
+            if (hasEditedSuccess) {
                 onEditComplete()
             }
         })
 
+        viewModel.eventEditprofileFailed.observe(viewLifecycleOwner, { hasEditedFailed ->
+            if (hasEditedFailed) {
+                Toast.makeText(activity, "Edit failed", Toast.LENGTH_LONG).show()
+                viewModel.onEditFailedComplete()
+            }
+        })
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -65,5 +75,25 @@ class EditprofileFragment : Fragment() {
         }
 
         viewModel.onEditSuccessComplete()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.toString() == "About") {
+            val action = EditprofileFragmentDirections.actionEditprofileFragmentToAboutFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+            return true
+        }
+        else if (item.toString() == "Log out") {
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) ||
+                    super.onOptionsItemSelected(item)
+        }
+        else {
+            return false
+        }
     }
 }

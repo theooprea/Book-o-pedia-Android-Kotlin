@@ -28,6 +28,10 @@ class EditprofileViewModel(tokenArg: String, usernameArg: String, emailArg: Stri
     val eventEditprofileSuccess: LiveData<Boolean>
         get() = _eventEditprofileSuccess
 
+    private val _eventEditprofileFailed = MutableLiveData<Boolean>()
+    val eventEditprofileFailed: LiveData<Boolean>
+        get() = _eventEditprofileFailed
+
 
     fun onEdit() {
         val jsonObject = JSONObject()
@@ -63,6 +67,7 @@ class EditprofileViewModel(tokenArg: String, usernameArg: String, emailArg: Stri
                 else {
                     Log.i("EditprofileViewModel", "Nu a mers")
                     Log.i("EditprofileViewModel", "" + response.code() + " " + response.message())
+                    onEditFailed()
                 }
             }
         }
@@ -75,5 +80,13 @@ class EditprofileViewModel(tokenArg: String, usernameArg: String, emailArg: Stri
 
     fun onEditSuccess() {
         _eventEditprofileSuccess.value = true
+    }
+
+    fun onEditFailedComplete() {
+        _eventEditprofileFailed.value = false
+    }
+
+    fun onEditFailed() {
+        _eventEditprofileFailed.value = true
     }
 }

@@ -1,16 +1,18 @@
 package com.example.bookolx.editbook
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.bookolx.R
 import com.example.bookolx.addbook.AddbookFragmentArgs
 import com.example.bookolx.databinding.FragmentEditbookBinding
+import com.example.bookolx.home.HomeFragmentDirections
 
 class EditbookFragment : Fragment() {
     private lateinit var viewModel: EditbookViewModel
@@ -41,9 +43,17 @@ class EditbookFragment : Fragment() {
             }
         })
 
+        viewModel.eventEditedFailed.observe(viewLifecycleOwner, {
+            if (it) {
+                Toast.makeText(activity, "Edit Failed", Toast.LENGTH_LONG).show()
+                viewModel.onBookEditedFailedComplete()
+            }
+        })
+
         binding.lifecycleOwner = viewLifecycleOwner
         binding.editbookViewModel = viewModel
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -56,5 +66,25 @@ class EditbookFragment : Fragment() {
         NavHostFragment.findNavController(this).navigate(action)
 
         viewModel.onBookEditedSuccessComplete()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.toString() == "About") {
+            val action = EditbookFragmentDirections.actionEditbookFragmentToAboutFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+            return true
+        }
+        else if (item.toString() == "Log out") {
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) ||
+                    super.onOptionsItemSelected(item)
+        }
+        else {
+            return false
+        }
     }
 }

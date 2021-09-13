@@ -1,15 +1,17 @@
 package com.example.bookolx.addbook
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.bookolx.R
 import com.example.bookolx.databinding.FragmentAddbookBinding
+import com.example.bookolx.home.HomeFragmentDirections
 
 class AddbookFragment : Fragment() {
     private lateinit var viewModel: AddbookViewModel
@@ -37,6 +39,14 @@ class AddbookFragment : Fragment() {
             }
         })
 
+        viewModel.eventCreatedFailed.observe(viewLifecycleOwner, {
+            if (it) {
+                Toast.makeText(activity, "Failed to add book", Toast.LENGTH_LONG).show()
+                viewModel.onBookCreatedFailedComplete()
+            }
+        })
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -49,5 +59,25 @@ class AddbookFragment : Fragment() {
         NavHostFragment.findNavController(this).navigate(action)
 
         viewModel.onBookCreatedSuccessComplete()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.toString() == "About") {
+            val action = AddbookFragmentDirections.actionAddbookFragmentToAboutFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+            return true
+        }
+        else if (item.toString() == "Log out") {
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) ||
+                    super.onOptionsItemSelected(item)
+        }
+        else {
+            return false
+        }
     }
 }
